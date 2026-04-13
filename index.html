@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AB@Affiliate - Home</title>
+  <style>
+    :root {
+      --primary: #131921;
+      --secondary: #232f3e;
+      --accent: #febd69;
+      --accent-hover: #f3a847;
+      --bg: #f3f3f3;
+      --card-bg: #ffffff;
+      --text: #111;
+      --muted: #666;
+      --danger: #cc1f1a;
+      --success: #067d62;
+      --radius: 10px;
+      --shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .brand span {
+      font-size: 1.1rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    nav {
+      display: flex;
+      gap: 16px;
+      font-weight: 600;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      padding: 8px 10px;
+      border-radius: 6px;
+    }
+
+    nav a:hover { background: rgba(255, 255, 255, 0.14); }
+
+    .layout {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 16px 32px;
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 18px;
+    }
+
+    .panel, .content-block {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .panel h2, .content-block h2 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+    }
+
+    .form-group { margin-bottom: 10px; }
+
+    label {
+      display: block;
+      font-size: 0.86rem;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    input, textarea, select, button {
+      width: 100%;
+      border-radius: 7px;
+      border: 1px solid #c9c9c9;
+      padding: 10px;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+
+    textarea { min-height: 80px; resize: vertical; }
+
+    button {
+      cursor: pointer;
+      border: none;
+      font-weight: 700;
+      transition: transform 0.2s, opacity 0.2s, background 0.2s;
+    }
+
+    button:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #111;
+    }
+
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    .btn-danger {
+      background: #ef4444;
+      color: #fff;
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: #fff;
+    }
+
+    .btn-ghost {
+      background: #e5e7eb;
+      color: #111;
+    }
+
+    .preview {
+      width: 100%;
+      height: 140px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px dashed #bbb;
+      background: #f7f7f7;
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #ececec;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      animation: fadeIn 0.45s ease;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: #fafafa;
+    }
+
+    .card-body {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .card-body h3 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    .price {
+      color: #b12704;
+      font-size: 1.06rem;
+      font-weight: 700;
+    }
+
+    .category-chip {
+      display: inline-block;
+      font-size: 0.74rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #3730a3;
+      width: fit-content;
+    }
+
+    .description {
+      color: var(--muted);
+      font-size: 0.88rem;
+      min-height: 40px;
+    }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .card-actions .full { grid-column: 1 / -1; }
+
+    .pages {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .content-block p { margin: 8px 0; color: #333; }
+
+    footer {
+      background: var(--secondary);
+      color: #fff;
+      padding: 18px 16px;
+      margin-top: 24px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+    }
+
+    .footer-links, .social {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      color: #ddd;
+    }
+
+    .muted-note {
+      font-size: 0.78rem;
+      color: #777;
+      margin-top: 6px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; }
+      .pages { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .search-row { grid-template-columns: 1fr; }
+      .header-inner { flex-direction: column; align-items: flex-start; }
+      nav { width: 100%; justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="#home" class="brand" aria-label="Brand">
+        <img id="brandLogo" alt="Brand Logo" src="" />
+        <span id="brandName"></span>
+      </a>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="layout" id="home">
+    <section class="panel" aria-label="Admin Panel">
+      <h2>Admin Panel</h2>
+
+      <div class="form-group">
+        <label for="brandText">Brand Name</label>
+        <input id="brandText" type="text" placeholder="Enter brand name" />
+      </div>
+      <div class="form-group">
+        <label for="logoUpload">Upload Logo</label>
+        <input id="logoUpload" type="file" accept="image/*" />
+      </div>
+      <button class="btn-success" id="saveBrandBtn">Save Brand Settings</button>
+
+      <hr style="margin:16px 0;border:none;border-top:1px solid #e5e5e5" />
+
+      <h2 id="formTitle">Add Product</h2>
+      <input type="hidden" id="editingProductId" />
+
+      <div class="form-group">
+        <label for="productName">Product Name</label>
+        <input id="productName" type="text" placeholder="e.g. Wireless Headphones" />
+      </div>
+
+      <div class="form-group">
+        <label for="productPrice">Price (₹)</label>
+        <input id="productPrice" type="number" min="0" step="0.01" placeholder="e.g. 1999" />
+      </div>
+
+      <div class="form-group">
+        <label for="productImage">Image URL</label>
+        <input id="productImage" type="url" placeholder="https://..." />
+      </div>
+
+      <img id="imagePreview" class="preview" alt="Image Preview" />
+
+      <div class="form-group">
+        <label for="productDescription">Description</label>
+        <textarea id="productDescription" placeholder="Short product details"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="categorySelect">Category</label>
+        <select id="categorySelect"></select>
+      </div>
+
+      <div class="form-group">
+        <label for="newCategory">Add New Category (Optional)</label>
+        <input id="newCategory" type="text" placeholder="e.g. Wearables" />
+      </div>
+
+      <div class="form-group">
+        <label for="affiliateLink">Affiliate Link</label>
+        <input id="affiliateLink" type="url" placeholder="https://affiliate-link.example" />
+      </div>
+
+      <button class="btn-primary" id="saveProductBtn">Add Product</button>
+      <button class="btn-ghost" id="cancelEditBtn" style="margin-top:8px;display:none">Cancel Edit</button>
+      <p class="muted-note">Admin controls are available only inside this panel.</p>
+    </section>
+
+    <section>
+      <div class="content-block">
+        <h2>Products</h2>
+        <div class="search-row">
+          <input id="searchInput" type="text" placeholder="Search by product name..." />
+          <select id="filterCategory"></select>
+        </div>
+        <div id="productsContainer" class="products-grid"></div>
+      </div>
+
+      <div class="pages">
+        <section id="about" class="content-block">
+          <h2>About</h2>
+          <p>
+            AB@Affiliate is a frontend-only affiliate storefront demo inspired by modern eCommerce layouts.
+            Manage products, categories, and branding instantly using browser localStorage.
+          </p>
+        </section>
+
+        <section id="contact" class="content-block">
+          <h2>Contact</h2>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="contactName">Name</label>
+              <input id="contactName" type="text" required />
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email</label>
+              <input id="contactEmail" type="email" required />
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" required></textarea>
+            </div>
+            <button class="btn-primary" type="submit">Send Message</button>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> AB@Affiliate. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="social">
+        <span>Facebook</span>
+        <span>Instagram</span>
+        <span>Twitter</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const STORAGE_KEYS = {
+      products: "products",
+      categories: "categories",
+      brandName: "brandName",
+      logo: "logo"
+    };
+
+    const PLACEHOLDER = "https://via.placeholder.com/600x400?text=No+Image";
+
+    const defaultCategories = ["Electronics", "Fashion", "Home"];
+
+    const defaultProducts = [
+      {
+        id: Date.now() + 1,
+        name: "Wireless Earbuds Pro",
+        price: 2499,
+        image: "https://images.unsplash.com/photo-1588423771073-b8903fbb85b5?auto=format&fit=crop&w=900&q=60",
+        description: "Noise-isolating earbuds with deep bass and long battery backup.",
+        category: "Electronics",
+        affiliateLink: "https://www.amazon.in/"
+      },
+      {
+        id: Date.now() + 2,
+        name: "Minimalist Analog Watch",
+        price: 1799,
+        image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=900&q=60",
+        description: "Elegant metal body watch with premium strap and clean dial.",
+        category: "Fashion",
+        affiliateLink: "https://www.amazon.in/"
+      },
+      {
+        id: Date.now() + 3,
+        name: "Portable Blender Bottle",
+        price: 999,
+        image: "https://images.unsplash.com/photo-1572441710534-68082ef78f4f?auto=format&fit=crop&w=900&q=60",
+        description: "USB rechargeable blender bottle perfect for juices and shakes.",
+        category: "Home",
+        affiliateLink: "https://www.amazon.in/"
+      }
+    ];
+
+    const els = {
+      brandLogo: document.getElementById("brandLogo"),
+      brandName: document.getElementById("brandName"),
+      brandText: document.getElementById("brandText"),
+      logoUpload: document.getElementById("logoUpload"),
+      saveBrandBtn: document.getElementById("saveBrandBtn"),
+      formTitle: document.getElementById("formTitle"),
+      editingProductId: document.getElementById("editingProductId"),
+      productName: document.getElementById("productName"),
+      productPrice: document.getElementById("productPrice"),
+      productImage: document.getElementById("productImage"),
+      imagePreview: document.getElementById("imagePreview"),
+      productDescription: document.getElementById("productDescription"),
+      categorySelect: document.getElementById("categorySelect"),
+      newCategory: document.getElementById("newCategory"),
+      affiliateLink: document.getElementById("affiliateLink"),
+      saveProductBtn: document.getElementById("saveProductBtn"),
+      cancelEditBtn: document.getElementById("cancelEditBtn"),
+      searchInput: document.getElementById("searchInput"),
+      filterCategory: document.getElementById("filterCategory"),
+      productsContainer: document.getElementById("productsContainer"),
+      contactForm: document.getElementById("contactForm")
+    };
+
+    let products = [];
+    let categories = [];
+
+    function readStorage(key, fallback) {
+      const raw = localStorage.getItem(key);
+      if (!raw) return fallback;
+      try {
+        return JSON.parse(raw);
+      } catch {
+        return fallback;
+      }
+    }
+
+    function saveStorage(key, value) {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+
+    function seedData() {
+      products = readStorage(STORAGE_KEYS.products, []);
+      categories = readStorage(STORAGE_KEYS.categories, []);
+
+      if (!categories.length) {
+        categories = [...defaultCategories];
+        saveStorage(STORAGE_KEYS.categories, categories);
+      }
+
+      if (!products.length) {
+        products = [...defaultProducts];
+        saveStorage(STORAGE_KEYS.products, products);
+      }
+
+      if (!localStorage.getItem(STORAGE_KEYS.brandName)) {
+        localStorage.setItem(STORAGE_KEYS.brandName, JSON.stringify("AB@Affiliate"));
+      }
+
+      if (!localStorage.getItem(STORAGE_KEYS.logo)) {
+        localStorage.setItem(STORAGE_KEYS.logo, JSON.stringify(PLACEHOLDER));
+      }
+    }
+
+    function renderBrand() {
+      const brandName = readStorage(STORAGE_KEYS.brandName, "AB@Affiliate");
+      const logo = readStorage(STORAGE_KEYS.logo, PLACEHOLDER);
+      els.brandName.textContent = brandName;
+      els.brandText.value = brandName;
+      els.brandLogo.src = logo || PLACEHOLDER;
+      els.brandLogo.onerror = () => { els.brandLogo.src = PLACEHOLDER; };
+    }
+
+    function fillCategoryDropdowns() {
+      const options = categories.map(c => `<option value="${c}">${c}</option>`).join("");
+      els.categorySelect.innerHTML = options;
+
+      els.filterCategory.innerHTML = `<option value="all">All Categories</option>${options}`;
+    }
+
+    function escapeHTML(value) {
+      return value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function renderProducts() {
+      const query = els.searchInput.value.trim().toLowerCase();
+      const categoryFilter = els.filterCategory.value;
+
+      const filtered = products.filter(product => {
+        const matchesName = product.name.toLowerCase().includes(query);
+        const matchesCategory = categoryFilter === "all" || product.category === categoryFilter;
+        return matchesName && matchesCategory;
+      });
+
+      if (!filtered.length) {
+        els.productsContainer.innerHTML = `<p>No products found for current filters.</p>`;
+        return;
+      }
+
+      els.productsContainer.innerHTML = filtered.map(product => {
+        const shortDesc = product.description.length > 74
+          ? `${product.description.slice(0, 74)}...`
+          : product.description;
+
+        return `
+          <article class="product-card">
+            <img src="${escapeHTML(product.image || PLACEHOLDER)}" alt="${escapeHTML(product.name)}" onerror="this.src='${PLACEHOLDER}'" />
+            <div class="card-body">
+              <h3>${escapeHTML(product.name)}</h3>
+              <div class="price">₹${Number(product.price).toLocaleString("en-IN")}</div>
+              <span class="category-chip">${escapeHTML(product.category)}</span>
+              <p class="description">${escapeHTML(shortDesc)}</p>
+              <div class="card-actions">
+                <a href="product.html?id=${product.id}" class="btn-ghost full" style="text-align:center;padding:9px 10px;">View Details</a>
+                <a href="${escapeHTML(product.affiliateLink)}" target="_blank" rel="noopener" class="btn-primary" style="text-align:center;padding:9px 10px;">Buy Now</a>
+                <button class="btn-success" onclick="startEdit(${product.id})">Edit</button>
+                <button class="btn-danger" onclick="deleteProduct(${product.id})">Delete</button>
+              </div>
+            </div>
+          </article>`;
+      }).join("");
+    }
+
+    function resetForm() {
+      els.formTitle.textContent = "Add Product";
+      els.editingProductId.value = "";
+      els.productName.value = "";
+      els.productPrice.value = "";
+      els.productImage.value = "";
+      els.productDescription.value = "";
+      els.newCategory.value = "";
+      els.affiliateLink.value = "";
+      els.imagePreview.src = PLACEHOLDER;
+      els.cancelEditBtn.style.display = "none";
+      els.saveProductBtn.textContent = "Add Product";
+    }
+
+    function persistProductsAndRender() {
+      saveStorage(STORAGE_KEYS.products, products);
+      renderProducts();
+    }
+
+    function startEdit(id) {
+      const product = products.find(p => p.id === id);
+      if (!product) return;
+      els.formTitle.textContent = "Edit Product";
+      els.editingProductId.value = String(product.id);
+      els.productName.value = product.name;
+      els.productPrice.value = product.price;
+      els.productImage.value = product.image;
+      els.imagePreview.src = product.image || PLACEHOLDER;
+      els.productDescription.value = product.description;
+      els.affiliateLink.value = product.affiliateLink;
+      els.categorySelect.value = product.category;
+      els.cancelEditBtn.style.display = "block";
+      els.saveProductBtn.textContent = "Update Product";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function deleteProduct(id) {
+      products = products.filter(p => p.id !== id);
+      persistProductsAndRender();
+    }
+
+    window.startEdit = startEdit;
+    window.deleteProduct = deleteProduct;
+
+    els.productImage.addEventListener("input", () => {
+      els.imagePreview.src = els.productImage.value.trim() || PLACEHOLDER;
+    });
+    els.imagePreview.onerror = () => { els.imagePreview.src = PLACEHOLDER; };
+
+    els.saveBrandBtn.addEventListener("click", () => {
+      const newName = els.brandText.value.trim() || "AB@Affiliate";
+      saveStorage(STORAGE_KEYS.brandName, newName);
+
+      const file = els.logoUpload.files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          saveStorage(STORAGE_KEYS.logo, reader.result);
+          renderBrand();
+          alert("Brand settings updated successfully!");
+        };
+        reader.readAsDataURL(file);
+      } else {
+        renderBrand();
+        alert("Brand name updated successfully!");
+      }
+    });
+
+    els.saveProductBtn.addEventListener("click", () => {
+      const name = els.productName.value.trim();
+      const price = Number(els.productPrice.value);
+      const image = els.productImage.value.trim();
+      const description = els.productDescription.value.trim();
+      const selectedCategory = els.categorySelect.value;
+      const addedCategory = els.newCategory.value.trim();
+      const affiliateLink = els.affiliateLink.value.trim();
+
+      if (!name || !price || !description || !affiliateLink) {
+        alert("Please fill all required fields.");
+        return;
+      }
+
+      let finalCategory = selectedCategory;
+      if (addedCategory) {
+        finalCategory = addedCategory;
+        if (!categories.includes(addedCategory)) {
+          categories.push(addedCategory);
+          saveStorage(STORAGE_KEYS.categories, categories);
+          fillCategoryDropdowns();
+        }
+      }
+
+      const editingId = Number(els.editingProductId.value);
+      if (editingId) {
+        const idx = products.findIndex(p => p.id === editingId);
+        if (idx > -1) {
+          products[idx] = {
+            ...products[idx],
+            name,
+            price,
+            image,
+            description,
+            category: finalCategory,
+            affiliateLink
+          };
+        }
+      } else {
+        products.unshift({
+          id: Date.now(),
+          name,
+          price,
+          image,
+          description,
+          category: finalCategory,
+          affiliateLink
+        });
+      }
+
+      persistProductsAndRender();
+      resetForm();
+    });
+
+    els.cancelEditBtn.addEventListener("click", resetForm);
+
+    els.searchInput.addEventListener("input", renderProducts);
+    els.filterCategory.addEventListener("change", renderProducts);
+
+    els.contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Thank you! Your message has been submitted.");
+      els.contactForm.reset();
+    });
+
+    function init() {
+      seedData();
+      renderBrand();
+      fillCategoryDropdowns();
+      renderProducts();
+      resetForm();
+      document.getElementById("year").textContent = new Date().getFullYear();
+    }
+
+    init();
+  </script>
+</body>
+</html>
