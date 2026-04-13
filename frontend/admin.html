@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AB@Affiliate Admin</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="./index.html">Store</a>
+        <a href="./admin.html">Admin Dashboard</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h1>Product Management</h1>
+        <form id="productForm">
+          <input type="text" id="name" placeholder="Product name" required />
+          <input type="number" id="price" placeholder="Price" step="0.01" required />
+          <input type="file" id="image" accept="image/*" />
+          <input type="url" id="imageUrl" placeholder="Or image URL" />
+          <textarea id="description" placeholder="Description" rows="4" required></textarea>
+          <input type="text" id="category" placeholder="Category" required />
+          <input type="url" id="affiliateLink" placeholder="Affiliate link" required />
+          <button type="submit" id="submitButton">Add Product</button>
+          <button type="button" id="cancelEdit" class="secondary" style="display: none">Cancel Edit</button>
+        </form>
+        <div id="message"></div>
+      </section>
+
+      <section style="margin-top: 1rem">
+        <h2>Products</h2>
+        <div id="productList" class="grid"></div>
+      </section>
+    </main>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/admin.js"></script>
+  </body>
+</html>
